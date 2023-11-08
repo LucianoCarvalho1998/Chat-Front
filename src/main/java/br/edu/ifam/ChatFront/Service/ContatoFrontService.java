@@ -14,21 +14,29 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import br.edu.ifam.ChatFront.model.Contato;
-
 @Service
 public class ContatoFrontService {
 	
-	private final String url = "http://localhost:8081/contato"; 
+	private final String url = "http://localhost:8080/contato"; 
 	public List<Contato> getContatos(){
 		RestTemplate restTemplate = new RestTemplate();
 		
-		ResponseEntity<Contato[]> response =  restTemplate.getForEntity(url , Contato[].class);
-		
+		ResponseEntity<Contato[]> response =  restTemplate.getForEntity(
+			url , Contato[].class);
 		return new ArrayList<Contato>(Arrays.asList(response.getBody()));
 	}
-	
+
+	public Contato getContato(Long id){
+		RestTemplate restTemplate = new RestTemplate();
+
+
+		ResponseEntity<Contato> response =  restTemplate.getForEntity(
+			url+"/"+id.toString(), Contato.class);
+		return response.getBody();
+	}
+
 	public Contato postContato(Contato contato) {
-		
+
 		RestTemplate restTemplate = new RestTemplate();
 		
 		HttpHeaders headers = new HttpHeaders();
@@ -44,15 +52,14 @@ public class ContatoFrontService {
 		return response.getBody();
 	}
 
-	public Contato putContato(Contato contato, long id) {
+	public Contato putContato(long id, Contato contato) {
 		RestTemplate restTemplate = new RestTemplate();
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
 		headers.setContentType(MediaType.APPLICATION_JSON);
-
+		
 		HttpEntity<Contato> requestBody = new HttpEntity<>(contato, headers);
-
 		String urlPut = url + "/" + Long.toString(id);
 		ResponseEntity<Contato> response =
 				restTemplate.exchange(urlPut,
@@ -61,9 +68,9 @@ public class ContatoFrontService {
 						Contato.class);
 		return response.getBody();
 	}
-
+	
 	public void deleteContato(long id) {
-
+		
 	}
 
 }
