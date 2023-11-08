@@ -70,7 +70,20 @@ public class ContatoFrontService {
 	}
 	
 	public void deleteContato(long id) {
-		
+		RestTemplate restTemplate = new RestTemplate();
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
+		headers.setContentType(MediaType.APPLICATION_JSON);
+
+		HttpEntity<Contato> requestBody = new HttpEntity<>(new Contato(), headers);
+
+		String urlPut = url + "/" + Long.toString(id);
+		ResponseEntity<Contato> response =
+				restTemplate.exchange(urlPut,
+						HttpMethod.DELETE,
+						requestBody,
+						Contato.class);
 	}
 
 }

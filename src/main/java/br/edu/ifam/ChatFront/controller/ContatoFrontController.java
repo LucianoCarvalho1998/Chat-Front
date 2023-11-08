@@ -64,6 +64,7 @@ public class ContatoFrontController {
     @DeleteMapping("/{id}")
     public String excluirContato(@PathVariable long id) {
     	System.out.println("Excluindo: "+Long.toString(id));
+    	contatoFrontService.deleteContato(id);
     	return "redirect:/contato";
     }
     
