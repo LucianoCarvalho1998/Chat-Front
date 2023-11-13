@@ -19,8 +19,8 @@ public class ChatFrontApplication {
 		SpringApplication.run(ChatFrontApplication.class, args);
 	}
 
-	/*
-	@Bean
+	
+	/*@Bean
 	public RestTemplate restTemplate(RestTemplateBuilder builder) {
 		return builder.build();
 	}

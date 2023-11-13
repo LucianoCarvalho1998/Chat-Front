@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Visualizar Mensagens</title>
+</head>
+<body>
+    <h1>Visualizar Mensagens</h1>
+    <div th:unless="${#lists.isEmpty(mensagens)}">
+        <ul>
+            <li th:each="mensagem : ${mensagens}">
+                <p>Mensagem: <span th:text="${mensagem.corpo}"></span></p>
+                <p>Remetente: <span th:text="${mensagem.remetente}"></span></p>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
