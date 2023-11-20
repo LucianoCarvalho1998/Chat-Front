@@ -2,16 +2,67 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Visualizar Mensagens</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #1877f2; /* Facebook blue */
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
+            margin: 0;
+            color: #333;
+        }
+
+        span {
+            font-weight: bold;
+            color: #1877f2;
+        }
+    </style>
 </head>
 <body>
-    <h1>Visualizar Mensagens</h1>
-    <div th:unless="${#lists.isEmpty(mensagens)}">
-        <ul>
-            <li th:each="mensagem : ${mensagens}">
-                <p>Mensagem: <span th:text="${mensagem.corpo}"></span></p>
-                <p>Remetente: <span th:text="${mensagem.remetente}"></span></p>
-            </li>
-        </ul>
+    <div class="container">
+        <h1>Visualizar Mensagens</h1>
+        <div th:unless="${#lists.isEmpty(mensagens)}">
+            <ul>
+                <li th:each="mensagem : ${mensagens}">
+                    <p>Mensagem: <span th:text="${mensagem.corpo}"></span></p>
+                    <p>Remetente: <span th:text="${mensagem.remetente}"></span></p>
+                </li>
+            </ul>
+        </div>
     </div>
 </body>
 </html>
