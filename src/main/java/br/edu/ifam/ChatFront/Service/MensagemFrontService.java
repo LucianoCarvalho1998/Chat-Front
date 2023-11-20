@@ -9,7 +9,7 @@ import br.edu.ifam.ChatFront.model.Mensagem;
 public class MensagemFrontService {
 
 
-	    private final String API_URL = "http://localhost:8080/mensagens"; // Substitua pela URL da sua API
+	    private final String API_URL = "http://localhost:8080/mensagem";
 
 	    public Mensagem[] listarMensagensDoContato(String contatoId) {
 	        RestTemplate restTemplate = new RestTemplate();
